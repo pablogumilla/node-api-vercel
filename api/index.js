@@ -5,7 +5,7 @@ const getUsd = async () => {
   const usdResponse = await fetch('https://dolarapi.com/v1/dolares');
   const usdData = await usdResponse.json();
 
-  return usdData;
+  return JSON.stringify(usdData);
 };
 
 app.get('/api/currency/usd', async (req, res) => {
