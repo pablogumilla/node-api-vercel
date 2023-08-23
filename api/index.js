@@ -10,12 +10,26 @@ const getUsd = async () => {
 
 app.get('/api/currency/usd', async (req, res) => {
   const usdData = await getUsd();
-  res.end(`Currency: ${usdData}`);
+  res.setHeader('Content-Type', 'application/json');
+
+  const response = {
+    response_type: 'in_channel',
+    text: `Currency: ${usdData}`,
+  }
+
+  res.end(response);
 });
 
 app.post('/api/currency/usd', async (req, res) => {
   const usdData = await getUsd();
-  res.end(`Currency: ${usdData}`);
+  res.setHeader('Content-Type', 'application/json');
+
+  const response = {
+    response_type: 'in_channel',
+    text: `Currency: ${usdData}`,
+  }
+
+  res.end(response);
 });
 
 module.exports = app;
