@@ -5,10 +5,15 @@ const getUsd = async () => {
   const usdResponse = await fetch('https://dolarapi.com/v1/dolares');
   const usdData = await usdResponse.json();
 
+  const jokeResponse = await fetch('https://icanhazdadjoke.com/');
+  const jokeData = await jokeResponse.json();
+
   const houses = [];
   for (const house of usdData) {
       houses.push(`Casa: ${house.casa} - Compra: ${house.compra} - Venta: ${house.venta}`);
   }
+  houses.push(' ');
+  houses.push(`\n${jokeData.joke}\n`);
 
   return houses.join('\n');
 };
