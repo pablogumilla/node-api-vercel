@@ -17,22 +17,19 @@ app.get('/api/currency/usd', async (req, res) => {
     text: `Currency: ${usdData}`,
   }
 
-  res.end(response);
+  res.json(response);
 });
 
 app.post('/api/currency/usd', async (req, res) => {
-  const payload = JSON.parse(req.body.payload);
-
   const usdData = await getUsd();
-  request.post({url: payload.responseUrl,
-    method: 'POST',
-    json: {
-      response_type: "in_channel",
-      text: usdData
-    }
-  });
+  res.setHeader('Content-Type', 'application/json');
 
-  res.send('received');
+  const response = {
+    response_type: 'in_channel',
+    text: `Currency: ${usdData}`,
+  }
+
+  res.json(response);
 });
 
 module.exports = app;
