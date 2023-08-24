@@ -6,7 +6,7 @@ const getUsd = async () => {
   const usdData = await usdResponse.json();
 
   const houses = [];
-  for (const house of data) {
+  for (const house of usdData) {
       houses.push(`Casa: ${house.casa} - Compra: ${house.compra} - Venta: ${house.venta}`);
   }
 
