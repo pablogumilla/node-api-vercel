@@ -5,7 +5,12 @@ const getUsd = async () => {
   const usdResponse = await fetch('https://dolarapi.com/v1/dolares');
   const usdData = await usdResponse.json();
 
-  return JSON.stringify(usdData);
+  const houses = [];
+  for (const house of data) {
+      houses.push(`Casa: ${house.casa} - Compra: ${house.compra} - Venta: ${house.venta}`);
+  }
+
+  return houses.join('\n');
 };
 
 app.get('/api/currency/usd', async (req, res) => {
@@ -14,7 +19,7 @@ app.get('/api/currency/usd', async (req, res) => {
 
   const response = {
     response_type: 'in_channel',
-    text: `Currency: ${usdData}`,
+    text: usdData,
   }
 
   res.json(response);
@@ -26,7 +31,7 @@ app.post('/api/currency/usd', async (req, res) => {
 
   const response = {
     response_type: 'in_channel',
-    text: `Currency: ${usdData}`,
+    text: usdData,
   }
 
   res.json(response);
